@@ -17,4 +17,4 @@ var animatePoints = function() {
     revealPoint(points);
 };
 
-//animatePoints();
+animatePoints();
