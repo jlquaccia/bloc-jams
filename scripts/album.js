@@ -1,3 +1,7 @@
+//===========================================================================
+// ALBUM OBJECTS
+//===========================================================================
+
 // Example album
 var albumPicasso = {
     title: 'The Colors',
@@ -29,6 +33,34 @@ var albumMarconi = {
         { title: 'Wrong Phone Number', duration: '2:15' }
     ]
 };
+
+// Album I picked
+var albumM83 = {
+    title: 'Saturdays = Youth',
+    artist: 'M83',
+    label: 'M83 Recording Inc',
+    year: '2008',
+    albumArtUrl: 'assets/images/album_covers/22.png',
+    songs: [
+        { title: 'You Appearing', duration: '3:39' },
+        { title: 'Kim & Jessie', duration: '5:23' },
+        { title: 'Skin of the Night', duration: '6:13' },
+        { title: 'Graveyard Girl', duration: '4:54' },
+        { title: 'Couleurs', duration: '8:37' },
+        { title: 'Up!', duration: '4:28' },
+        { title: 'We Own the Sky', duration: '5:05' },
+        { title: 'Highway of Endless Dreams', duration: '4:35' },
+        { title: 'Too Late', duration: '5:00' },
+        { title: 'Dark Moves of Love', duration: '3:19' },
+        { title: 'Midnight Souls Still Remain', duration: '11:08' }
+    ]
+};
+
+var allAlbums = [albumPicasso, albumMarconi, albumM83];
+
+//===========================================================================
+// END ALBUM OBJECTS
+//===========================================================================
 
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
@@ -64,3 +96,9 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 };
+
+var albumCover = document.getElementsByClassName('album-cover-art')[0];
+var index = 0;
+albumCover.addEventListener('click', function() {
+    setCurrentAlbum(allAlbums[index >= allAlbums.length - 1 ? index = 0 : ++index]);
+}, false);
