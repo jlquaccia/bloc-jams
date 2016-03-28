@@ -62,13 +62,19 @@ var setCurrentAlbum = function(album) {
 };
 
 var findParentByClassName = function(element, targetClass) {
-    if (element) {
+    if (element.parentElement === null) {
+        alert("No parent found");
+    } else {
         var currentParent = element.parentElement;
-        
+
         while (currentParent.className != targetClass) {
             currentParent = currentParent.parentElement;
+
+            if (currentParent.nodeName === "HTML") {
+                return alert("No parent found with that class name");
+            }
         }
-        
+
         return currentParent;
     }
 };
@@ -146,4 +152,8 @@ window.onload = function() {
             clickHandler(event.target);
         });
     }
+    
+//    document.addEventListener('click', function(event) {
+//        findParentByClassName(event.target, 'song-item-number');
+//    });
 };
