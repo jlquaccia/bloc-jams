@@ -129,6 +129,10 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
             
             updateSeekPercentage($seekBar, seekBarFillRatio);
+            
+            console.log(this.getTime())
+            
+            setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
         });
     }
 };
@@ -196,6 +200,7 @@ var updatePlayerBarSong = function() {
     $(".currently-playing .artist-song-mobile").text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     
     $(".main-controls .play-pause").html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
 var nextSong = function() {
@@ -268,6 +273,26 @@ var togglePlayFromPlayerBar = function() {
         $mainControlsPlayPause.html(playerBarPlayButton);
         currentSoundFile.pause();
     }
+};
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    $(".current-time").text(currentTime);
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    $(".total-time").text(totalTime);
+};
+
+var filterTimeCode = function(timeInSeconds){
+
+
+
+  var minutes = Math.floor(timeInSeconds/60);
+
+
+  var seconds = timeInSeconds  - (minutes * 60);
+
+  return minutes + ":" + Math.floor(seconds);
 };
 
 // Album button templates
