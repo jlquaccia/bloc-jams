@@ -64,7 +64,7 @@ var createSongRow = function(songNumber, songName, songLength) {
             $(this).html(pauseButtonTemplate);
             updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
-            if (currentSoundFile.isPause) {
+            if (currentSoundFile.isPaused()) {
                 $(this).html(pauseButtonTemplate);
                 $('.main-controls .play-pause').html(playerBarPauseButton);
                 currentSoundFile.play();
@@ -259,7 +259,7 @@ var previousSong = function() {
 var togglePlayFromPlayerBar = function() {
     var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
     
-    if (currentSoundFile.isPaused) {
+    if (currentSoundFile.isPaused()) {
         currentlyPlayingCell.html(pauseButtonTemplate);
         $mainControlsPlayPause.html(playerBarPauseButton);
         currentSoundFile.play();
