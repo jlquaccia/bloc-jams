@@ -129,7 +129,10 @@ var updateSeekBarWhileSongPlays = function() {
             var $seekBar = $('.seek-control .seek-bar');
             
             updateSeekPercentage($seekBar, seekBarFillRatio);
-            setCurrentTimeInPlayerBar(this.getTime);
+            
+            console.log(this.getTime())
+            
+            setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
         });
     }
 };
@@ -278,6 +281,18 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
 
 var setTotalTimeInPlayerBar = function(totalTime) {
     $(".total-time").text(totalTime);
+};
+
+var filterTimeCode = function(timeInSeconds){
+
+
+
+  var minutes = Math.floor(timeInSeconds/60);
+
+
+  var seconds = timeInSeconds  - (minutes * 60);
+
+  return minutes + ":" + Math.floor(seconds);
 };
 
 // Album button templates
